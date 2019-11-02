@@ -8,25 +8,25 @@ import { Platform } from 'react-native';
 import LoginScreen from '../screens/auth/LoginScreen';
 import AuthLoadingScreen from '../screens/auth/AuthLoadingScreen';
 const config = Platform.select({
-  web: { headerMode: 'screen' },
-  default: {}
+	web: { headerMode: 'screen' },
+	default: {}
 });
 
 const AuthStack = createStackNavigator(
-  {
-    Auth: LoginScreen
-  },
-  config
+	{
+		Auth: LoginScreen
+	},
+	config
 );
 const switchNavigator = createSwitchNavigator(
-  {
-    AuthLoading: AuthLoadingScreen,
-    Auth: AuthStack,
-    Main: MainTabNavigator
-  },
-  {
-    initialRouteName: 'AuthLoading'
-  }
+	{
+		AuthLoading: AuthLoadingScreen,
+		Auth: AuthStack,
+		Main: MainTabNavigator
+	},
+	{
+		initialRouteName: 'AuthLoading'
+	}
 );
 switchNavigator.path = '';
 
