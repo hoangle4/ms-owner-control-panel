@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import {
   deviceWidth,
   calcWidth,
   deviceHeight
 } from '../../utils/DeviceDimensions';
-
+import api from '../../api';
+import StatsContext from '../../context/Stats/StatsContext';
 export default function HomeScreen() {
   const [boxHeight, setBoxHeight] = useState(0);
-
+  const statsContext = useContext(StatsContext);
+  const { getOneDayCheckIn, oneDayCheckins } = statsContext;
+  useEffect(() => {
+    getOneDayCheckIn();
+  }, []);
+  console.log(oneDayCheckins);
   return (
     <View style={styles.container}>
       <View
@@ -29,7 +35,9 @@ export default function HomeScreen() {
             }
           ]}
         >
-          <Text>1</Text>
+          <Text style={{ fontSize: 35, fontWeight: 'bold' }}>
+            {oneDayCheckins.length} Check-Ins Today
+          </Text>
         </View>
         <View
           style={[
@@ -103,6 +111,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F3F7EA',
     width: deviceWidth / 2,
     borderWidth: 1,
-    borderColor: '#282527'
+    borderColor: '#282527',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });

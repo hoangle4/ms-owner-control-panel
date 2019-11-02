@@ -5,6 +5,8 @@ import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AuthState from './context/Auth/AuthState';
+import StatsState from './context/Stats/StatsState';
+
 import AppNavigator from './navigation/AppNavigator';
 
 export default function App(props) {
@@ -20,12 +22,14 @@ export default function App(props) {
     );
   } else {
     return (
-      <AuthState>
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle='default' />}
-          <AppNavigator />
-        </View>
-      </AuthState>
+      <StatsState>
+        <AuthState>
+          <View style={styles.container}>
+            {Platform.OS === 'ios' && <StatusBar barStyle='default' />}
+            <AppNavigator />
+          </View>
+        </AuthState>
+      </StatsState>
     );
   }
 }
