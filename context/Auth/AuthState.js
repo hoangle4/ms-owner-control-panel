@@ -37,6 +37,8 @@ const AuthState = props => {
     try {
       const result = await api.loginOwner(formData);
       if (result) dispatch({ type: LOGIN_SUCCESS, payload: result.data });
+
+      getAuthOwner();
     } catch (error) {
       console.log(error.response.data);
       dispatch({ type: LOGIN_FAIL, payload: error.response.data });

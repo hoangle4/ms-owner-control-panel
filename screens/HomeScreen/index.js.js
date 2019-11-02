@@ -14,7 +14,7 @@ export default function HomeScreen() {
   useEffect(() => {
     getOneDayCheckIn();
   }, []);
-  console.log(oneDayCheckins);
+
   return (
     <View style={styles.container}>
       <View
