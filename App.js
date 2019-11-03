@@ -4,8 +4,8 @@ import * as Font from 'expo-font';
 import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import AuthState from './context/Auth/AuthState';
 import StatsState from './context/Stats/StatsState';
+import AuthState from './context/Auth/AuthState';
 
 import AppNavigator from './navigation/AppNavigator';
 
@@ -22,14 +22,14 @@ export default function App(props) {
     );
   } else {
     return (
-      <StatsState>
-        <AuthState>
+      <AuthState>
+        <StatsState>
           <View style={styles.container}>
             {Platform.OS === 'ios' && <StatusBar barStyle='default' />}
             <AppNavigator />
           </View>
-        </AuthState>
-      </StatsState>
+        </StatsState>
+      </AuthState>
     );
   }
 }

@@ -5,10 +5,12 @@ export default function AuthLoadingScreen({ navigation }) {
   const authContext = useContext(AuthContext);
   const { isAuthenticated, loading } = authContext;
   useEffect(() => {
-    if (isAuthenticated && !loading) {
-      navigation.navigate('Main');
-    } else {
+    if (loading) {
+      navigation.navigate('AuthLoading');
+    } else if (!loading && !isAuthenticated) {
       navigation.navigate('Auth');
+    } else {
+      navigation.navigate('Main');
     }
   }, [isAuthenticated]);
   return (

@@ -1,35 +1,30 @@
-import React from 'react';
-import { ScrollView, StyleSheet, View, Text, Image } from 'react-native';
-import { Card, ListItem, Button, Icon } from 'react-native-elements';
-
+import React, { useContext } from 'react';
+import { ScrollView, StyleSheet, ActivityIndicator } from 'react-native';
+import { Card, ListItem } from 'react-native-elements';
+import StatsContext from '../../context/Stats/StatsContext';
 export default function ClientsScreen() {
-  const users = [
-    {
-      name: 'brynn',
-      avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
-    },
-    {
-      name: 'Chris Jackson',
-      avatar:
-        'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-      subtitle: 'Vice Chairman'
-    }
-    // more users here
-  ];
+  const statsContext = useContext(StatsContext);
+  const { allCustomers, loading } = statsContext;
   return (
     <ScrollView style={styles.container}>
-      <Card containerStyle={{ padding: 0 }}>
-        {users.map((u, i) => {
-          return (
-            <ListItem
-              key={i}
-              roundAvatar
-              title={u.name}
-              leftAvatar={{ source: { uri: u.avatar } }}
-            />
-          );
-        })}
-      </Card>
+      {loading ? (
+        <ActivityIndicator />
+      ) : (
+        <Card containerStyle={{ padding: 0 }}>
+          {allCustomers &&
+            allCustomers.map((u, i) => {
+              return (
+                <ListItem
+                  key={i}
+                  roundAvatar
+                  title={u.name}
+                  leftAvatar={{ source: { uri: u.avatar } }}
+                  bottomDivider
+                />
+              );
+            })}
+        </Card>
+      )}
     </ScrollView>
   );
 }

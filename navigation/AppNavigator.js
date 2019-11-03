@@ -4,8 +4,6 @@ import {
   createStackNavigator
 } from 'react-navigation';
 
-import { Platform } from 'react-native';
-
 import MainTabNavigator from './MainTabNavigator';
 
 import LoginScreen from '../screens/auth/LoginScreen';
