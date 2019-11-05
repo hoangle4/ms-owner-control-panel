@@ -21,7 +21,6 @@ const AuthState = props => {
   const getAuthOwner = async () => {
     const token = await AsyncStorage.getItem('token');
     if (token) {
-      console.log(token);
       setAuthToken(token);
     }
 
