@@ -8,25 +8,28 @@ export default function ClientsScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filterClients, setFilterClients] = useState([]);
   const [loadingIcon, setLoadingIcon] = useState(false);
-
+  let Timeout;
   const onInputHandler = async s => {
+    clearTimeout(Timeout);
     setLoadingIcon(true);
     const value = s.toLowerCase();
     await setSearchQuery(value.trim());
+    let user;
+    Timeout = setTimeout(() => {
+      user = allCustomers.filter(
+        u =>
+          u.name &&
+          u.name
+            .split(' ')
+            .join('')
+            .toLowerCase()
+            .includes(searchQuery)
+      );
 
-    const user = allCustomers.filter(
-      u =>
-        u.name &&
-        u.name
-          .split(' ')
-          .join('')
-          .toLowerCase()
-          .includes(searchQuery)
-    );
-
-    if (!user) return;
-    setFilterClients(user);
-    setLoadingIcon(false);
+      if (!user) return;
+      setFilterClients(user);
+      setLoadingIcon(false);
+    }, 5000);
   };
   console.log(filterClients);
   return (
