@@ -7,6 +7,8 @@ import {
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
+import AppointmentScreen from '../screens/Appointment';
+
 import ClientsScreen from '../screens/ClientsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
@@ -46,6 +48,22 @@ ClientsStack.navigationOptions = {
 
 ClientsStack.path = '';
 
+const AppointmentStack = createStackNavigator({
+  Appointment: AppointmentScreen
+});
+
+AppointmentStack.navigationOptions = {
+  tabBarLabel: 'Appointment',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-calendar' : 'md-calendar'}
+    />
+  )
+};
+
+AppointmentStack.path = '';
+
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen
 });
@@ -65,7 +83,8 @@ SettingsStack.path = '';
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   ClientsStack,
-  SettingsStack
+  SettingsStack,
+  AppointmentStack
 });
 
 tabNavigator.path = '';
