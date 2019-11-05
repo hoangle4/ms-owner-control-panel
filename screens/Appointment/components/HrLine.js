@@ -1,30 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
-import {AppContext} from './ContextProvider';
+import AppContext from '../../../context/Appointment/AppointmentContext';
 
-const HrLine = ({color, width}) =>
-  <AppContext.Consumer>
-    {(context) =>
-      <View
-        style={{
-          width: '100%',
-          paddingTop: context.hour_size - width,
-          borderBottomColor: color,
-          borderBottomWidth: width,
-        }}
-      />
-    }
-  </AppContext.Consumer>
+const HrLine = ({ color, width }) => {
+	const appContext = useContext(AppContext);
+	const { hour_size } = appContext;
+	return (
+		<View
+			style={{
+				width: '100%',
+				paddingTop: hour_size - width,
+				borderBottomColor: color,
+				borderBottomWidth: width
+			}}
+		/>
+	);
+};
 
 HrLine.propTypes = {
-  color: PropTypes.string,
-  width: PropTypes.number,
+	color: PropTypes.string,
+	width: PropTypes.number
 };
 
 HrLine.defaultProps = {
-  color: '#BABABA',
-  width: 1,
+	color: '#BABABA',
+	width: 1
 };
 
 export default HrLine;
