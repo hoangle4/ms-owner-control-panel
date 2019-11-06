@@ -29,7 +29,7 @@ class NowBar extends Component {
     midnight.setHours(0, 0, 0, 0);
     var now = new Date();
     var hours = (now - midnight) / 3600000;
-    var calc_pad = hours * hour_size - 1;
+    var calc_pad = hours * 4 * hour_size - 1;
 
     this.setState({
       calc_pad: calc_pad

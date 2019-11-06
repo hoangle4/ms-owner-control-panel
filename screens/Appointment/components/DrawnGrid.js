@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import HrLine from './HrLine';
-
+import TimeArr from '../constants/time';
 const DrawnGrid = ({ staff }) => {
   return (
     <View style={styles.drawnGridContainer}>
@@ -11,8 +11,12 @@ const DrawnGrid = ({ staff }) => {
             style={(styles.drawnGridCol, [{ width: `${100 / staff.length}%` }])}
             key={i}
           >
-            {[...Array(24)].map((val, i) => (
-              <HrLine key={i} />
+            {TimeArr.map((val, i) => (
+              <HrLine
+                key={i}
+                borderTop={i % 4 === 0 ? true : false}
+                time={val}
+              />
             ))}
           </View>
         );
