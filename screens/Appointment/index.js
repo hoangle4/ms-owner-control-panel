@@ -19,7 +19,6 @@ const RNSchedule = ({ hourSize, dataArray, headerColor, leftIcon, accentColor, s
 	const appointmentContext = useContext(AppointmentContext);
 	const { hour_size } = appointmentContext;
 	let data = !!dataArray && procData(dataArray, hourSize);
-	console.log(hourSize);
 	return (
 		<Fragment>
 			<View style={styles.container}>
@@ -66,6 +65,9 @@ RNSchedule.defaultProps = {
 	accentColor: Colors.blue,
 	status_bar: true,
 	onEventPress: () => {}
+};
+RNSchedule.navigationOptions = {
+	header: null
 };
 
 export default RNSchedule;

@@ -1,53 +1,67 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import { View } from 'react-native';
 import AppContext from '../../../context/Appointment/AppointmentContext';
 
-const NowBar = ({ hour_size }) => {
-	const appContext = useContext(AppContext);
-	const { date, isDatePickerVisible, setDate } = appContext;
-	const [ calcPad, setCalcPad ] = useState(0);
+class NowBar extends Component {
+	state = {
+		calc_pad: 0
+	};
 
-	let _interval;
-	useEffect(() => {
+	componentDidMount() {
+		const { hour_size } = this.props;
 		var int_ms = 900000 - 6000 * hour_size; // set an interval trigger based on size of an hour
 
-		_setHeight();
+		this._setHeight();
+		var that = this;
 
-		_interval = setInterval(() => {
-			_setHeight();
+		this._interval = setInterval(() => {
+			that._setHeight();
 		}, int_ms);
+	}
 
-		return clearInterval(_interval);
-	}, []);
+	componentWillUnmount() {
+		clearInterval(this._interval);
+	}
 
-	const _setHeight = () => {
+	_setHeight() {
+		const { hour_size } = this.props;
 		var midnight = new Date();
 		midnight.setHours(0, 0, 0, 0);
 		var now = new Date();
 		var hours = (now - midnight) / 3600000;
 		var calc_pad = hours * hour_size - 1;
 
-		setCalcPad({
-			calc_pad
+		this.setState({
+			calc_pad: calc_pad
 		});
-	};
-
-	if (!sameDay(date, new Date())) {
-		return <View />;
 	}
 
-	return (
-		<View
-			style={{
-				width: '100%',
-				paddingTop: calcPad,
-				borderBottomColor: 'black',
-				borderBottomWidth: 2,
-				position: 'absolute'
-			}}
-		/>
-	);
-};
+	render() {
+		const { calc_pad } = this.state;
+		return (
+			<AppContext.Consumer>
+				{(context) => {
+					console.log(context);
+
+					if (!sameDay(context.date, new Date())) {
+						return null;
+					}
+					return (
+						<View
+							style={{
+								width: '100%',
+								paddingTop: calc_pad,
+								borderBottomColor: 'black',
+								borderBottomWidth: 2,
+								position: 'absolute'
+							}}
+						/>
+					);
+				}}
+			</AppContext.Consumer>
+		);
+	}
+}
 
 const sameDay = (d1, d2) => {
 	return d1.getDate() === d2.getDate() && d1.getMonth() === d2.getMonth() && d1.getFullYear() === d2.getFullYear();

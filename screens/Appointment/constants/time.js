@@ -1,3 +1,28 @@
-const TimeArr = ["1 AM", "2 AM", "3 AM", "4 AM", "5 AM", "6 AM", "7 AM", "8 AM", "9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM", "6 PM", "7 PM", "8 PM", "9 PM", "10 PM", "11 PM", "12 AM"];
-  
-export default TimeArr
+const TimeArr = [
+	'1 am',
+	'2 am',
+	'3 am',
+	'4 am',
+	'5 am',
+	'6 am',
+	'7 am',
+	'8 am',
+	'9 am',
+	'10 am',
+	'11 am',
+	'12 pm',
+	'1 pm',
+	'2 pm',
+	'3 pm',
+	'4 pm',
+	'5 pm',
+	'6 pm',
+	'7 pm',
+	'8 pm',
+	'9 pm',
+	'10 pm',
+	'11 pm',
+	'12 am'
+];
+
+export default TimeArr;
