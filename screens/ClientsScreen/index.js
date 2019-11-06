@@ -31,7 +31,7 @@ export default function ClientsScreen() {
       setLoadingIcon(false);
     }, 5000);
   };
-  console.log(filterClients);
+
   return (
     <ScrollView style={styles.container}>
       {loading ? (

@@ -10,64 +10,86 @@ import NowBar from './components/NowBar';
 import ScheduledData from './components/ScheduledData';
 import SmartScroll from './components/SmartScroll';
 import DatePickeMe from './components/DatePickeMe';
-// import {ContextProvider} from './components/ContextProvider'
 import tinycolor from 'tinycolor2';
 import Colors from './constants/colors';
 import procData from './services/procData';
 import AppointmentContext from '../../context/Appointment/AppointmentContext';
-const RNSchedule = ({ hourSize, dataArray, headerColor, leftIcon, accentColor, status_bar, onEventPress }) => {
-	const appointmentContext = useContext(AppointmentContext);
-	const { hour_size } = appointmentContext;
-	let data = !!dataArray && procData(dataArray, hourSize);
-	return (
-		<Fragment>
-			<View style={styles.container}>
-				<Header
-					status_bar={status_bar}
-					accent={accentColor}
-					left_icon={leftIcon}
-					header_color={
-						tinycolor(headerColor).isValid() ? tinycolor(headerColor).toHexString() : Colors.light_gray
-					}
-				/>
-				<DatePickeMe />
-				<SmartScroll hour_size={hourSize}>
-					<View style={styles.body}>
-						<View style={styles.hour_col}>
-							<TimeCol hour_size={hourSize} />
-						</View>
-						<View style={styles.schedule_col}>
-							<DrawnGrid />
-							<NowBar hour_size={hourSize} />
-							{!!data && <ScheduledData dataArray={data} onEventPress={onEventPress} />}
-						</View>
-					</View>
-				</SmartScroll>
-			</View>
-		</Fragment>
-	);
+import StaffNameHeader from './components/StaffNameHeader';
+const RNSchedule = ({
+  hourSize,
+  dataArray,
+  headerColor,
+  leftIcon,
+  accentColor,
+  status_bar,
+  onEventPress,
+  staff
+}) => {
+  const appointmentContext = useContext(AppointmentContext);
+  const { hour_size } = appointmentContext;
+  let data = !!dataArray && procData(dataArray, hourSize);
+  return (
+    <Fragment>
+      <View style={styles.container}>
+        <Header
+          status_bar={status_bar}
+          accent={accentColor}
+          left_icon={leftIcon}
+          header_color={
+            tinycolor(headerColor).isValid()
+              ? tinycolor(headerColor).toHexString()
+              : Colors.light_gray
+          }
+        />
+        <DatePickeMe
+          header_color={
+            tinycolor(headerColor).isValid()
+              ? tinycolor(headerColor).toHexString()
+              : Colors.light_gray
+          }
+          accent={accentColor}
+        />
+        <StaffNameHeader staff={staff} />
+        <SmartScroll hour_size={hourSize}>
+          <View style={styles.body}>
+            <View style={styles.hour_col}>
+              <TimeCol hour_size={hourSize} />
+            </View>
+            <View style={styles.schedule_col}>
+              <DrawnGrid staff={staff} />
+              <NowBar hour_size={hourSize} />
+              {!!data && (
+                <ScheduledData dataArray={data} onEventPress={onEventPress} />
+              )}
+            </View>
+          </View>
+        </SmartScroll>
+      </View>
+    </Fragment>
+  );
 };
 
 RNSchedule.propTypes = {
-	hourSize: PropTypes.number,
-	dataArray: PropTypes.array,
-	headerColor: PropTypes.oneOfType([ PropTypes.string, PropTypes.object ]),
-	leftIcon: PropTypes.node,
-	accentColor: PropTypes.oneOfType([ PropTypes.string, PropTypes.object ]),
-	onEventPress: PropTypes.func,
-	status_bar: PropTypes.bool
+  hourSize: PropTypes.number,
+  dataArray: PropTypes.array,
+  headerColor: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  leftIcon: PropTypes.node,
+  accentColor: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  onEventPress: PropTypes.func,
+  status_bar: PropTypes.bool
 };
 
 RNSchedule.defaultProps = {
-	hourSize: Dimensions.get('window').height / 13.34,
-	headerColor: Colors.light_gray,
-	leftIcon: null,
-	accentColor: Colors.blue,
-	status_bar: true,
-	onEventPress: () => {}
+  hourSize: Dimensions.get('window').height / 13.34,
+  headerColor: Colors.light_gray,
+  leftIcon: null,
+  accentColor: Colors.blue,
+  status_bar: true,
+  onEventPress: () => {},
+  staff: [{ name: 'Hoang Le' }, { name: 'Sa Nguyen' }, { name: 'Truc Ly' }]
 };
 RNSchedule.navigationOptions = {
-	header: null
+  header: null
 };
 
 export default RNSchedule;
