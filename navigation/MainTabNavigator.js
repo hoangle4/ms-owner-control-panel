@@ -12,6 +12,16 @@ import AppointmentScreen from '../screens/Appointment';
 import ClientsScreen from '../screens/ClientsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
+import Home from '../screens/SettingsScreen/Home';
+import Staff from '../screens/SettingsScreen/Staff';
+import Services from '../screens/SettingsScreen/Services';
+import Inventory from '../screens/SettingsScreen/Inventory';
+import Analytics from '../screens/SettingsScreen/Analytics';
+import Setup from '../screens/SettingsScreen/Setup';
+import ContactSupport from '../screens/SettingsScreen/ContactSupport';
+import HelpCenter from '../screens/SettingsScreen/HelpCenter';
+// import Logout from '../screens/SettingsScreen/Home';
+
 const HomeStack = createStackNavigator({
   Home: HomeScreen
 });
@@ -65,7 +75,39 @@ AppointmentStack.navigationOptions = {
 AppointmentStack.path = '';
 
 const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen
+  Settings: SettingsScreen,
+  Home: {
+    screen: Home,
+    path: 'settings/home'
+  },
+  Staff: {
+    screen: Staff,
+    path: 'settings/staff'
+  },
+  Services: {
+    screen: Services,
+    path: 'settings/services'
+  },
+  Inventory: {
+    screen: Inventory,
+    path: 'settings/inventory'
+  },
+  Analytics: {
+    screen: Analytics,
+    path: 'settings/analytics'
+  },
+  Setup: {
+    screen: Setup,
+    path: 'settings/setup'
+  },
+  ContactSupport: {
+    screen: ContactSupport,
+    path: 'settings/contact-support'
+  },
+  HelpCenter: {
+    screen: HelpCenter,
+    path: 'settings/help-center'
+  }
 });
 
 SettingsStack.navigationOptions = {
@@ -83,8 +125,8 @@ SettingsStack.path = '';
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   ClientsStack,
-  SettingsStack,
-  AppointmentStack
+  AppointmentStack,
+  SettingsStack
 });
 
 tabNavigator.path = '';

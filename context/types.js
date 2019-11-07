@@ -18,3 +18,7 @@ export const ONE_DAY_CHECK_IN_LOADED = 'ONE_DAY_CHECK_IN_LOADED';
 export const ONE_DAY_CHECK_IN_LOADED_FALIED = 'ONE_DAY_CHECK_IN_LOADED_FALIED';
 //--------------------
 export const ALL_CUSTOMER_LOADED = 'ALL_CUSTOMER_LOADED';
+//--------------------
+export const SET_DATE = 'SET_DATE';
+export const TOGGLE_DATE = 'TOGGLE_DATE';
+export const SET_TODAY = 'SET_TODAY';
