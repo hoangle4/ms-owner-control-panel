@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 const Inventory = (props) => {
 	return (
 		<View>
-			<Text>Inventory</Text>
+			<Text>Coming Soon...</Text>
 		</View>
 	);
 };
