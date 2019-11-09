@@ -43,7 +43,7 @@ const StaffMember = props => {
 
 StaffMember.propTypes = {};
 StaffMember.navigationOptions = {
-  header: null
+  // header: null
 };
 const styles = StyleSheet.create({
   row: {
@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
     marginTop: calcHeight(2)
   },
   col: {
-    backgroundColor: '#999',
-    textAlign: 'center'
+    backgroundColor: '#999'
+    // textAlign: 'center'
   },
   iconCol: {
     width: '10%'
