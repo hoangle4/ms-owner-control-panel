@@ -3,32 +3,51 @@ import PropTypes from 'prop-types';
 import { Button, Overlay, Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ScrollView, StyleSheet, View, Text } from 'react-native';
-import { deviceHeight, deviceWidth } from '../../../utils/DeviceDimensions';
+import {
+  deviceHeight,
+  deviceWidth,
+  calcHeight
+} from '../../../utils/DeviceDimensions';
 const OverLayCom = ({ isVisible, setIsVisible }) => {
   return (
-    <ScrollView>
-      <Overlay
-        isVisible={isVisible}
-        windowBackgroundColor='rgba(255, 255, 255, .5)'
-        overlayBackgroundColor='#bababa'
-        width={deviceWidth}
-        height={deviceHeight}
-        onBackdropPress={() => setIsVisible(false)}
-      >
+    <Overlay
+      isVisible={isVisible}
+      windowBackgroundColor='rgba(255, 255, 255)'
+      overlayBackgroundColor='#ffffff'
+      width={deviceWidth}
+      height={deviceHeight}
+      onBackdropPress={() => setIsVisible(false)}
+    >
+      <ScrollView>
         <View style={styles.formContainer}>
           <View style={styles.formInput}>
-            <Input style={styles.formInputField} placeholder='e.g. Sa Nguyen' />
-            <Input style={styles.formInputField} placeholder='503-555-5555' />
+            <Text>Name</Text>
             <Input
-              style={styles.formInputField}
+              containerStyle={styles.formInputField}
+              placeholder='e.g. Sa Nguyen'
+            />
+
+            <Text>Phone Number</Text>
+            <Input
+              containerStyle={styles.formInputField}
+              placeholder='503-555-5555'
+            />
+
+            <Text>Email</Text>
+            <Input
+              containerStyle={styles.formInputField}
               placeholder='email@example.com'
             />
+
+            <Text>Title</Text>
             <Input
-              style={styles.formInputField}
+              containerStyle={styles.formInputField}
               placeholder='Add staff title (i.e Nail Technician)'
             />
+
+            <Text>Notes</Text>
             <Input
-              style={styles.formInputField}
+              containerStyle={styles.formInputField}
               placeholder='Private notes of Staff'
             />
           </View>
@@ -45,8 +64,8 @@ const OverLayCom = ({ isVisible, setIsVisible }) => {
             />
           </View>
         </View>
-      </Overlay>
-    </ScrollView>
+      </ScrollView>
+    </Overlay>
   );
 };
 
@@ -55,7 +74,18 @@ OverLayCom.propTypes = {
   setIsVisible: PropTypes.func.isRequired
 };
 OverLayCom.navigationOptions = {
-  header: null
+  title: ' Add Staff'
 };
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  formContainer: {
+    marginTop: deviceHeight / 10
+  },
+  formInput: {
+    marginBottom: deviceHeight / 10
+  },
+  formButton: {},
+  formInputField: {
+    marginBottom: calcHeight(2)
+  }
+});
 export default OverLayCom;
