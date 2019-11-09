@@ -17,7 +17,13 @@ import Analytics from '../screens/SettingsScreen/Analytics';
 import Setup from '../screens/SettingsScreen/Setup';
 import ContactSupport from '../screens/SettingsScreen/ContactSupport';
 import HelpCenter from '../screens/SettingsScreen/HelpCenter';
-// import Logout from '../screens/SettingsScreen/Home';
+import StaffMembers from '../screens/SettingsScreen/Staff/StaffMembers';
+
+const SubStaff = createStackNavigator({
+	StaffMembers: {
+		screen: StaffMembers
+	}
+});
 
 const HomeStack = createStackNavigator({
 	Home: HomeScreen
@@ -96,11 +102,12 @@ const SettingsStack = createStackNavigator({
 	HelpCenter: {
 		screen: HelpCenter,
 		path: 'settings/help-center'
-	}
+	},
+	SubStaff
 });
 
 SettingsStack.navigationOptions = {
-	tabBarLabel: 'Settings',
+	tabBarLabel: 'Account',
 	tabBarIcon: ({ focused }) => (
 		<TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
 	)

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { ListItem } from 'react-native-elements';
 import { ScrollView, StyleSheet, View, Text } from 'react-native';
 const Staff = (props) => {
-	console.log(props.navigation);
 	const list = [
 		{
 			title: 'Staff Hours',
@@ -35,7 +34,7 @@ const Staff = (props) => {
 					leftIcon={{ name: item.icon, type: 'FontAwesome', iconStyle: { fontSize: 40 } }}
 					bottomDivider
 					chevron
-					onPress={(e) => props.navigation.navigate('Setup')}
+					onPress={(e) => props.navigation.navigate(item.title.split(' ').join(''))}
 				/>
 			))}
 		</ScrollView>
