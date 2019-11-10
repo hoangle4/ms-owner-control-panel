@@ -14,6 +14,8 @@ import tinycolor from 'tinycolor2';
 import Colors from './constants/colors';
 import procData from './services/procData';
 import AppointmentContext from '../../context/Appointment/AppointmentContext';
+import StaffContext from '../../context/Staff/StaffContext';
+
 import StaffNameHeader from './components/StaffNameHeader';
 const RNSchedule = ({
   hourSize,
@@ -23,11 +25,14 @@ const RNSchedule = ({
   accentColor,
   status_bar,
   onEventPress,
-  staff
+  defaultStaff
 }) => {
   const appointmentContext = useContext(AppointmentContext);
+  const staffContext = useContext(StaffContext);
+  const { staff } = staffContext;
   const { hour_size } = appointmentContext;
   let data = !!dataArray && procData(dataArray, hourSize);
+  console.log(staff);
   return (
     <Fragment>
       <View style={styles.container}>
@@ -49,14 +54,14 @@ const RNSchedule = ({
           }
           accent={accentColor}
         />
-        <StaffNameHeader staff={staff} />
+        <StaffNameHeader staff={defaultStaff} />
         <SmartScroll hour_size={hourSize}>
           <View style={styles.body}>
             <View style={styles.hour_col}>
               <TimeCol hour_size={hourSize} />
             </View>
             <View style={styles.schedule_col}>
-              <DrawnGrid staff={staff} />
+              <DrawnGrid staff={defaultStaff} />
               <NowBar hour_size={hourSize} />
               {!!data && (
                 <ScheduledData dataArray={data} onEventPress={onEventPress} />
@@ -86,7 +91,11 @@ RNSchedule.defaultProps = {
   accentColor: Colors.blue,
   status_bar: true,
   onEventPress: () => {},
-  staff: [{ name: 'Hoang Le' }, { name: 'Sa Nguyen' }, { name: 'Truc Ly' }]
+  defaultStaff: [
+    { name: 'Hoang Le' },
+    { name: 'Sa Nguyen' },
+    { name: 'Truc Ly' }
+  ]
 };
 RNSchedule.navigationOptions = {
   header: null

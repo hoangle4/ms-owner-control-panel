@@ -22,7 +22,20 @@ const OverLayCom = ({ isVisible, setIsVisible }) => {
   const { name, phoneNumber, email, title, notes } = formData;
 
   const handleOnAddStaff = async () => {
-    await addStaff(formData);
+    const result = await addStaff(formData);
+    console.log(result);
+    setFormData({
+      ...formData,
+      name: '',
+      phoneNumber: '',
+      email: '',
+      title: '',
+      notes: ''
+    });
+    setIsVisible(false);
+  };
+
+  const handleOnCancel = async () => {
     setIsVisible(false);
   };
   console.log(phoneNumber);
@@ -100,7 +113,7 @@ const OverLayCom = ({ isVisible, setIsVisible }) => {
               buttonStyle={{ backgroundColor: '#f2f2f2' }}
               titleStyle={{ color: '#333' }}
               title='Cancel'
-              onPress={() => setIsVisible(false)}
+              onPress={handleOnCancel}
             />
             <Button title='Save' onPress={handleOnAddStaff} />
           </View>
