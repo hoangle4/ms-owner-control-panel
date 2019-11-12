@@ -82,6 +82,14 @@ Services.propTypes = {};
 const styles = StyleSheet.create({
 	btnContainer: {
 		width: calcWidth(3)
+	},
+	subtitleView: {
+		flexDirection: 'row',
+		paddingTop: 5
+	},
+
+	ratingText: {
+		color: 'grey'
 	}
 });
 export default Services;

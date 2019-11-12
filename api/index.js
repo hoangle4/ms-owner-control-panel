@@ -7,5 +7,7 @@ export default {
   loginOwner: async formData => axios.post(url + '/api/login-owner', formData),
   getAuthOwner: async () => axios.get(url + '/api/get-auth-owner'),
   getOneDayCheckIn: async () => axios.get(url + '/api/ctrl/get-1-day'),
-  getAllCustomer: async () => axios.get(url + '/api/ctrl/get-all-customer')
+  getAllCustomer: async () => axios.get(url + '/api/ctrl/get-all-customer'),
+  addStaff: async formData => axios.post(url + '/api/add-staff', formData),
+  getStaff: async () => axios.get(url + '/api/ctrl/get-staff')
 };

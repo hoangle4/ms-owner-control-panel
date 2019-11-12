@@ -1,12 +1,11 @@
 import { LOGIN_SUCCESS, LOGIN_FAIL, CLEAR_ERRORS, LOGOUT } from '../types';
 import { AsyncStorage } from 'react-native';
 
-export default (state, action) => {
+export default async (state, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      AsyncStorage.setItem('token', action.payload.token)
-        .then(t => console.log('t_set'))
-        .catch(err => console.log(err));
+      const result = await AsyncStorage.setItem('token', action.payload.token);
+      if (result) console.log('[TOKEN_SET]');
       return {
         ...state,
         isAuthenticated: true,
@@ -15,9 +14,8 @@ export default (state, action) => {
       };
     case LOGIN_FAIL:
     case LOGOUT:
-      AsyncStorage.removeItem('token')
-        .then(t => console.log('t_removed'))
-        .catch(err => console.log(err));
+      const error = await AsyncStorage.removeItem('token');
+      if (!error) console.log('[TOKEN_REMOVED]');
 
       return {
         ...state,

@@ -29,7 +29,7 @@ const AuthState = props => {
       if (result) dispatch({ type: LOGIN_SUCCESS, payload: result.data });
     } catch (error) {
       console.log(error.response.data);
-      // dispatch({ type: LOGIN_FAIL, payload: error.response.data });
+      dispatch({ type: LOGIN_FAIL, payload: error.response.data });
     }
   };
 
@@ -51,6 +51,7 @@ const AuthState = props => {
 
   const logOutOwner = () => dispatch({ type: LOGOUT });
   const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
+  console.log(state.error);
   return (
     <AuthContext.Provider
       value={{
